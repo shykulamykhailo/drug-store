@@ -1,5 +1,5 @@
-import StoreProducts from './StoreProducts';
-import StoreSidebar from './StoreSidebar';
+import StoreProducts from '../features/store/StoreProducts';
+import StoreSidebar from '../features/store/StoreSidebar';
 
 function Store() {
     return (

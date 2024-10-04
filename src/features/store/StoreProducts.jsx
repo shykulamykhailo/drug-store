@@ -14,33 +14,6 @@ function StoreProducts() {
         return <Spinner />;
     }
 
-    // if (!drugs.length) return <div>Empry drugs data...</div>;
-    // const filterDrugs = searchParams.get('category') || 'all';
-
-    // let filteredDrugs;
-
-    // if (filterDrugs === 'all') filteredDrugs = drugs;
-
-    // if (filterDrugs === 'first-aid')
-    //     filteredDrugs = drugs.filter((drug) => drug.category === 'First Aid');
-
-    // if (filterDrugs === 'temperature-reduction')
-    //     filteredDrugs = drugs.filter(
-    //         (drug) => drug.category === 'Temperature Reduction'
-    //     );
-    // if (filterDrugs === 'antibiotics')
-    //     filteredDrugs = drugs.filter((drug) => drug.category === 'Antibiotics');
-    // if (filterDrugs === 'antihistamines')
-    //     filteredDrugs = drugs.filter(
-    //         (drug) => drug.category === 'Antihistamines'
-    //     );
-    // if (filterDrugs === 'diabetes')
-    //     filteredDrugs = drugs.filter((drug) => drug.category === 'Diabetes');
-    // if (filterDrugs === 'vitamins')
-    //     filteredDrugs = drugs.filter((drug) => drug.category === 'Vitamins');
-
-    console.log(drugs);
-
     return (
         <>
             <Product

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AppLayout from './layouts/AppLayout';
-import Store from './features/store/Store';
+import Store from './pages/Store';
 import ShoppingCart from './features/shoppingCart/ShoppingCart';
 import GlobalStyles from './styles/GlobalStyles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

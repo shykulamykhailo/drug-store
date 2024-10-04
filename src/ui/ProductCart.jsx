@@ -14,7 +14,7 @@ function ProductCart({ drug }) {
             <img src={`${drugImage}`} height="60px" />
             <div>{name}</div>
             <div>{category}</div>
-            <div>{price}</div>
+            <div>${price}</div>
             <button onClick={() => handleAddToCart(drug)}>add to cart</button>
         </div>
     );
