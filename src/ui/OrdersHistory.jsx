@@ -1,5 +1,9 @@
 function OrdersHistory() {
-    return <div>OrdersHistory</div>;
+    return (
+        <div>
+            <div>OrdersHistory</div>
+        </div>
+    );
 }
 
 export default OrdersHistory;

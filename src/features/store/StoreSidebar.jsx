@@ -3,12 +3,12 @@ import Filter from '../../ui/Filter';
 function StoreSidebar() {
     return (
         <Filter
-            categories="category"
+            filterField="category"
             options={[
                 { value: 'all', label: 'All' },
-                { value: 'first-aid', label: 'First Aid' },
+                { value: 'first_aid', label: 'First Aid' },
                 {
-                    value: 'temperature-reduction',
+                    value: 'temperature_reduction',
                     label: 'Temperature Reduction',
                 },
                 { value: 'antibiotics', label: 'Antibiotics' },
