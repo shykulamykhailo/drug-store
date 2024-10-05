@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
+import Map from './Map';
 
 const StyledForm = styled.form`
     display: flex;
@@ -28,7 +29,7 @@ function Form({ onFormSubmit }) {
             <input {...register('phoneNumber', { required: true })} />
             Address <input {...register('location', { required: true })} />
             <button type="submit">Submit</button>
-            {/* <Map /> */}
+            <Map />
         </StyledForm>
     );
 }
