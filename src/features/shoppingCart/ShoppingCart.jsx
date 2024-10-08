@@ -1,6 +1,6 @@
 import { useStore } from '../../context/StoreContext';
 import { insertOrder } from '../../services/apiOrders';
-import Form from '../../ui/Form';
+import OrderForm from '../../ui/OrderForm';
 
 function ShoppingCart() {
     const {
@@ -16,6 +16,7 @@ function ShoppingCart() {
         console.log(userData);
         console.log(storeData);
         insertOrder({ userData, storeData });
+        handleClear();
     };
 
     return (
@@ -39,12 +40,16 @@ function ShoppingCart() {
                         </li>
                     ))}
                 </ul>
-                <button onClick={() => handleClear()}>
-                    Clear shopping cart
-                </button>
-                <p> Total Price: ${calculateTotalPrice()}</p>
+                {storeData.length !== 0 && (
+                    <>
+                        <button onClick={() => handleClear()}>
+                            Clear shopping cart
+                        </button>
+                        <p> Total Price: ${calculateTotalPrice()}</p>
+                    </>
+                )}
             </div>
-            <Form onFormSubmit={handleFormSubmit} />
+            <OrderForm onFormSubmit={handleFormSubmit} />
         </>
     );
 }

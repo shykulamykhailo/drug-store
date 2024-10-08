@@ -52,17 +52,26 @@ const StoreProvider = ({ children }) => {
     };
 
     const handleDecrement = (productId) => {
-        const updatedCart = storeData.map((item) =>
-            item.id === productId
-                ? {
-                      ...item,
-                      quantity: item.quantity - 1,
-                      productPrice: ((item.quantity - 1) * item.price).toFixed(
-                          2
-                      ),
-                  }
-                : item
-        );
+        const updatedCart = storeData
+            .map((item) => {
+                if (item.id === productId) {
+                    if (item.quantity === 1) {
+                        handleRemove(productId);
+                        return null;
+                    } else {
+                        return {
+                            ...item,
+                            quantity: item.quantity - 1,
+                            productPrice: (
+                                (item.quantity - 1) *
+                                item.price
+                            ).toFixed(2),
+                        };
+                    }
+                }
+                return item;
+            })
+            .filter((item) => item !== null);
         setStoreData(updatedCart);
     };
 

@@ -6,6 +6,10 @@ import GlobalStyles from './styles/GlobalStyles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StoreProvider } from './context/StoreContext';
 import Contacts from './pages/Contacts';
+import Authorization from './pages/Authorization';
+import AuthStatus from './features/authentication/AuthStatus';
+import Profile from './pages/Profile';
+import SignupForm from './features/authentication/SignupForm';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -29,8 +33,15 @@ function App() {
                                 element={<ShoppingCart />}
                             />
                             <Route path="contacts" element={<Contacts />} />
+                            <Route
+                                path="authorization"
+                                element={<Authorization />}
+                            />
+                            <Route path="profile" element={<Profile />} />
+                            <Route path="signup" element={<SignupForm />} />
                         </Route>
                     </Routes>
+                    <AuthStatus />
                 </StoreProvider>
             </BrowserRouter>
         </QueryClientProvider>
