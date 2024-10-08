@@ -5,7 +5,7 @@ import ShoppingCart from './features/shoppingCart/ShoppingCart';
 import GlobalStyles from './styles/GlobalStyles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StoreProvider } from './context/StoreContext';
-import OrdersHistory from './ui/OrdersHistory';
+import Contacts from './pages/Contacts';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -28,7 +28,7 @@ function App() {
                                 path="shoppingCart"
                                 element={<ShoppingCart />}
                             />
-                            <Route path="history" element={<OrdersHistory />} />
+                            <Route path="contacts" element={<Contacts />} />
                         </Route>
                     </Routes>
                 </StoreProvider>

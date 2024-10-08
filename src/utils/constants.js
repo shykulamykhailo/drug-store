@@ -24,3 +24,8 @@ export const DRUGSTORES_ADRESESS = [
         lng: 23.98312058900264,
     },
 ];
+
+export const DEFAULT_MAP_POSITION = {
+    lat: 49.846222298550195,
+    lng: 24.027775564487197,
+};

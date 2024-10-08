@@ -1,22 +1,15 @@
 import styled from 'styled-components';
-import {
-    useJsApiLoader,
-    GoogleMap,
-    MarkerF,
-    Autocomplete,
-    DirectionsRenderer,
-} from '@react-google-maps/api';
-import { useRef, useState } from 'react';
-import { DRUGSTORES_ADRESESS } from '../utils/constants';
+import { useJsApiLoader, GoogleMap, MarkerF } from '@react-google-maps/api';
+import { useEffect, useState } from 'react';
+import { DEFAULT_MAP_POSITION, DRUGSTORES_ADRESESS } from '../utils/constants';
+import { useGeolocation } from '../utils/useGeolocation';
 
 const Flex = styled.div`
     position: relative;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 
     background-position: 'bottom';
-    height: 100vh;
-    width: 100vw;
 `;
 
 const Box = styled.div`
@@ -25,93 +18,58 @@ const Box = styled.div`
     margin-top: 16px;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    min-width: 768px;
+    min-width: 400px;
     z-index: 1400;
 `;
 
-const center = { lat: 49.846222298550195, lng: 24.027775564487197 };
-
-function Map() {
+function Map({ mapSize }) {
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
         libraries: ['places'],
     });
 
     const [map, setMap] = useState(/** @type google.maps.Map */ (null));
-    const [directionsResponse, setDirectionsResponse] = useState(null);
-    const [distance, setDistance] = useState('');
-    const [duration, setDuration] = useState('');
+    const [mapPosition, setMapPostion] = useState(DEFAULT_MAP_POSITION);
 
-    const originRef = useRef();
+    const {
+        isLoading: isLoadingPosition,
+        position: geolocationPosition,
+        getPosition,
+    } = useGeolocation();
 
-    const destinationRef = useRef();
+    useEffect(() => {
+        if (geolocationPosition)
+            setMapPostion({
+                lat: geolocationPosition.lat,
+                lng: geolocationPosition.lng,
+            });
+    }, [geolocationPosition]);
 
     if (!isLoaded) {
         return <div>Loading</div>;
     }
 
-    async function calculateRoute() {
-        if (
-            originRef.current.value === '' ||
-            destinationRef.current.value === ''
-        ) {
-            return;
-        }
-
-        // eslint-disable-next-line no-undef
-        const directionsService = new google.maps.DirectionsService();
-        const results = await directionsService.route({
-            origin: originRef.current.value,
-            destination: destinationRef.current.value,
-            // eslint-disable-next-line no-undef
-            travelMode: google.maps.TravelMode.DRIVING,
-        });
-        setDirectionsResponse(results);
-        setDistance(results.routes[0].legs[0].distance.text);
-        setDuration(results.routes[0].legs[0].duration.value);
-    }
-
-    function clearRoute() {
-        setDirectionsResponse(null);
-        setDistance('');
-        setDuration('');
-        originRef.current.value = '';
-        destinationRef.current.value = '';
-    }
-
+    console.log(mapPosition);
     return (
         <Flex>
-            <Autocomplete>
-                <input type="text" placeholder="Origin" ref={originRef} />
-            </Autocomplete>
-            <Autocomplete>
-                <input
-                    type="text"
-                    placeholder="Destination"
-                    ref={destinationRef}
-                />
-            </Autocomplete>
-            <button type="submit" onClick={calculateRoute}>
-                Calculete route
+            <button onClick={getPosition}>
+                {isLoadingPosition ? 'Loading...' : 'Use your position'}
             </button>
-            <button onClick={clearRoute}>Clear route</button>
-
-            <button onClick={() => map.panTo(center)}>My location</button>
-            <p>Distance: {distance}</p>
-            <p>Duration: {duration}</p>
             <Box>
                 <GoogleMap
-                    center={center}
+                    center={mapPosition}
                     zoom={15}
-                    mapContainerStyle={{ width: '100%', height: '500px' }}
+                    mapContainerStyle={mapSize}
                     onLoad={(map) => setMap(map)}
                 >
-                    {DRUGSTORES_ADRESESS.map((drugstore) => (
-                        <MarkerF position={drugstore} key={Math.random()} />
-                    ))}
-                    {directionsResponse && (
-                        <DirectionsRenderer directions={directionsResponse} />
+                    {geolocationPosition && (
+                        <>
+                            <MarkerF position={mapPosition} />
+                        </>
                     )}
+                    {DRUGSTORES_ADRESESS.map((drugstore) => (
+                        <MarkerF position={drugstore} key={drugstore.lat} />
+                    ))}
                 </GoogleMap>
             </Box>
         </Flex>

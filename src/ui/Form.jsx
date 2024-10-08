@@ -29,7 +29,6 @@ function Form({ onFormSubmit }) {
             <input {...register('phoneNumber', { required: true })} />
             Address <input {...register('location', { required: true })} />
             <button type="submit">Submit</button>
-            <Map />
         </StyledForm>
     );
 }
