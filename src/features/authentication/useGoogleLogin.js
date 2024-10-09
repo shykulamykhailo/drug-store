@@ -9,6 +9,7 @@ export function useGoogleLogin() {
         mutationFn: () => loginGoogleApi(),
         onSuccess: (user) => {
             queryClient.setQueryData(['user'], user.user);
+            console.log('succes');
             navigate('/profile', { replace: true });
         },
         onError: (err) => {
