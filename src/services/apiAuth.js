@@ -38,32 +38,21 @@ export async function loginGoogle() {
 
     if (error) throw new Error(error.message);
 
-    // Отримуємо поточну сесію
-    const { data: sessionData, error: sessionError } =
-        await supabase.auth.getSession();
-    if (sessionError) throw new Error(sessionError.message);
-
-    // Отримуємо дані користувача
-    const { data: userData, error: userError } = await supabase.auth.getUser();
-    if (userError) throw new Error(userError.message);
-
-    // Повертаємо і сесію, і користувача
-
-    return {
-        session: sessionData.session,
-        user: userData.user,
-    };
+    return data;
 }
 
 export async function getCurrentUser() {
     const { data: session } = await supabase.auth.getSession();
-    if (!session.session) return null;
+    if (!session.session) {
+        console.log('null from curr user');
+        return null;
+    }
 
-    const { data, error } = await supabase.getUser();
+    const { data, error } = await supabase.auth.getUser();
 
     if (error) throw new Error(error.message);
-    console.log('from get current user');
-    return data?.user;
+    console.log('from get current user', data);
+    return data.user;
 }
 
 export async function logout() {

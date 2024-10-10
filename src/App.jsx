@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StoreProvider } from './context/StoreContext';
 import Contacts from './pages/Contacts';
 import Authorization from './pages/Authorization';
-import AuthStatus from './features/authentication/AuthStatus';
 import Profile from './pages/Profile';
 import SignupForm from './features/authentication/SignupForm';
 import GoogleAuthCallback from './features/authentication/GoogleAuthCallback';
@@ -46,7 +45,6 @@ function App() {
                             <Route path="signup" element={<SignupForm />} />
                         </Route>
                     </Routes>
-                    <AuthStatus />
                 </StoreProvider>
             </BrowserRouter>
         </QueryClientProvider>

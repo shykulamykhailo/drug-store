@@ -25,14 +25,6 @@ function GoogleAuthCallback() {
                         console.error('Error setting session:', error);
                     } else {
                         console.log('Session set successfully:', data);
-                        localStorage.setItem(
-                            'access_token',
-                            data.session.access_token
-                        );
-                        localStorage.setItem(
-                            'refresh_token',
-                            data.session.refresh_token
-                        );
                         queryClient.setQueryData(['user'], data.user);
 
                         navigate('/profile');

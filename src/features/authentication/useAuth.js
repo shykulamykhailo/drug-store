@@ -1,6 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { loginGoogle as loginGoogleApi } from '../../services/apiAuth';
+import {
+    getCurrentUser,
+    loginGoogle as loginGoogleApi,
+} from '../../services/apiAuth';
 import { login as loginApi } from '../../services/apiAuth'; //
 
 export function useAuth() {
@@ -14,7 +17,7 @@ export function useAuth() {
         },
         onSuccess: (user) => {
             queryClient.setQueryData(['user'], user.user);
-
+            getCurrentUser();
             console.log('Success, session and user saved:', user);
 
             navigate('/profile', { replace: true });
@@ -29,8 +32,7 @@ export function useAuth() {
         onSuccess: (user) => {
             console.log(user);
             queryClient.setQueryData(['user'], user.user);
-            localStorage.setItem('access_token', user.session.access_token);
-            localStorage.setItem('refresh_token', user.session.refresh_token);
+
             navigate('/profile', { replace: true });
         },
         onError: (err) => {
