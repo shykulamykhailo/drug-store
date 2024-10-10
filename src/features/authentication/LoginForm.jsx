@@ -1,15 +1,14 @@
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { useLogin } from './useLogin';
-import { useGoogleLogin } from './useGoogleLogin';
+import { useNavigate } from 'react-router-dom';
+
+import { useAuth } from './useAuth';
 
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const { login, isLoading } = useLogin();
-    const { loginGoogle, isGoogleLoading } = useGoogleLogin();
+    const { loginGoogle, isGoogleLoading, login, isLoading } = useAuth();
 
     function handleSubmit(e) {
         e.preventDefault();

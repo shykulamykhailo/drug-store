@@ -28,13 +28,31 @@ export async function login({ email, password }) {
 }
 
 export async function loginGoogle() {
+    // Аутентифікація через Google
     let { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
+        options: {
+            redirectTo: 'http://localhost:5173/auth/callback',
+        },
     });
 
     if (error) throw new Error(error.message);
 
-    return data;
+    // Отримуємо поточну сесію
+    const { data: sessionData, error: sessionError } =
+        await supabase.auth.getSession();
+    if (sessionError) throw new Error(sessionError.message);
+
+    // Отримуємо дані користувача
+    const { data: userData, error: userError } = await supabase.auth.getUser();
+    if (userError) throw new Error(userError.message);
+
+    // Повертаємо і сесію, і користувача
+
+    return {
+        session: sessionData.session,
+        user: userData.user,
+    };
 }
 
 export async function getCurrentUser() {
