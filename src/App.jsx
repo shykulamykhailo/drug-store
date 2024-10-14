@@ -10,6 +10,7 @@ import Authorization from './pages/Authorization';
 import Profile from './pages/Profile';
 import SignupForm from './features/authentication/SignupForm';
 import GoogleAuthCallback from './features/authentication/GoogleAuthCallback';
+import HomePage from './pages/HomePage';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -27,6 +28,7 @@ function App() {
                 <StoreProvider>
                     <Routes>
                         <Route path="/" element={<AppLayout />}>
+                            <Route path="/" element={<HomePage />} />
                             <Route
                                 path="/auth/callback"
                                 element={<GoogleAuthCallback />}
