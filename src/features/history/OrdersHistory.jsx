@@ -1,5 +1,6 @@
 import Spinner from '../../ui/Spinner';
 import { useUser } from '../authentication/useUser';
+import OrderCart from './OrderCart';
 import { useOrders } from './useOrders';
 
 function OrdersHistory() {
@@ -26,14 +27,7 @@ function OrdersHistory() {
             {filteredUserOrders.length > 0 ? (
                 <ul>
                     {filteredUserOrders.map((order) => (
-                        <li key={order.id}>
-                            <p>{order.created_at}</p>
-                            <ul>
-                                {order.orderedDrugs.map((drug) => (
-                                    <li key={drug.id}>{drug.name}</li>
-                                ))}
-                            </ul>
-                        </li>
+                        <OrderCart order={order} key={order.id} id={order.id} />
                     ))}
                 </ul>
             ) : (
