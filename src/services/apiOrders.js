@@ -20,3 +20,16 @@ export async function insertOrder({ userData, storeData }) {
         console.log('Order data inserted succesfully', data);
     }
 }
+
+export async function getOrders() {
+    let query = supabase.from('orders').select('*');
+
+    const { data, error } = await query;
+
+    if (error) {
+        console.error(error);
+        throw new Error('Orders could not be a loaded');
+    }
+
+    return data;
+}

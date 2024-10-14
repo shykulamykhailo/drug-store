@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useSignup } from './useSignup';
 
-const regex = /^[A-Za-zА-Яа-яІіЇїЄє'’-]{1,50}$/;
+const regex = /^[A-Za-zА-Яа-яІіЇїЄє'’\-\s]{1,50}$/;
 
 function SignupForm() {
     const { signup, isLoading } = useSignup();
@@ -34,17 +34,6 @@ function SignupForm() {
                     },
                 })}
             />
-            {/* <input
-                type="text"
-                id="lastName"
-                {...register('lastName', {
-                    required: true,
-                    pattern: {
-                        value: regex,
-                        message: 'Invalid last name format',
-                    },
-                })}
-            /> */}
             <p>email</p>
             <input
                 type="email"
