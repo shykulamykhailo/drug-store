@@ -5,7 +5,6 @@ import photoAbout3 from '../../data/img/homepage-about-3.jpg';
 
 const AboutSection = styled.div`
     padding-top: 70px;
-    padding-bottom: 60px;
 
     text-align: center;
 

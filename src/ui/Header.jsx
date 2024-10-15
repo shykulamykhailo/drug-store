@@ -14,7 +14,7 @@ const StyledHeader = styled.div`
     justify-content: space-between;
     padding: 1rem;
     background-color: ${({ isScrolled }) =>
-        isScrolled ? 'var(--color-grey-100)' : 'transparent'};
+        isScrolled ? 'var(--color-green-50)' : 'transparent'};
     transition: background-color 0.3s ease;
     z-index: 100;
 `;
