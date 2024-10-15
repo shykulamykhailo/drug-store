@@ -15,10 +15,6 @@ const MainContent = styled.main`
     overflow-y: auto;
 `;
 
-const FooterContent = styled.div`
-    position: relative;
-`;
-
 function AppLayout() {
     return (
         <StyledLayout>

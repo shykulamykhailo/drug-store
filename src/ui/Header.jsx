@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Logo from './Logo';
 import MainNav from './MainNav';
+import { useState, useEffect } from 'react';
 
 const StyledHeader = styled.div`
     position: fixed;
@@ -12,12 +13,32 @@ const StyledHeader = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    background-color: var(--color-green-200);
+    background-color: ${({ isScrolled }) =>
+        isScrolled ? 'var(--color-grey-100)' : 'transparent'};
+    transition: background-color 0.3s ease;
+    z-index: 100;
 `;
 
 function Header() {
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
-        <StyledHeader>
+        <StyledHeader isScrolled={isScrolled}>
             <Logo />
             <MainNav />
         </StyledHeader>

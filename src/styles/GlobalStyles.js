@@ -64,7 +64,7 @@ const GlobalStyles = createGlobalStyle`
       font-style: normal;
   min-height: 100vh;
   line-height: 1.5;
-  padding-top:  70px;
+  
 }
 button {
   cursor: pointer;
