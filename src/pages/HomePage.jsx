@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { useRef } from 'react';
 import Banner from '../features/homepage/Banner';
 import About from '../features/homepage/About';
@@ -8,12 +7,7 @@ import Testimonials from '../features/homepage/Testimonials';
 
 const Container = styled.div`
     text-align: center;
-`;
-
-const TestimonialsSection = styled.div`
-    display: flex;
-    justify-content: space-around;
-    padding: 40px 20px;
+    overflow-x: hidden;
 `;
 
 function HomePage() {

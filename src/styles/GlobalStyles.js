@@ -48,7 +48,7 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-
+ 
 
 }
 
@@ -64,6 +64,8 @@ const GlobalStyles = createGlobalStyle`
       font-style: normal;
   min-height: 100vh;
   line-height: 1.5;
+ 
+  
   
 }
 button {
