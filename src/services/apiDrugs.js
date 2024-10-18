@@ -16,8 +16,8 @@ export async function getDrugs({ page, filter }) {
         query = query[filter.method || 'eq'](filter.field, filter.value);
 
     if (page) {
-        const from = (page - 1) * 10;
-        const to = from + 10 - 1;
+        const from = (page - 1) * 15;
+        const to = from + 15 - 1;
         query = query.range(from, to);
     }
 

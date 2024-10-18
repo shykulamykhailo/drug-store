@@ -1,9 +1,17 @@
 import { useSearchParams } from 'react-router-dom';
 import { useDrugs } from './useDrugs';
-import Product from '../../ui/Product';
+import Products from '../../ui/Products';
 import Spinner from '../../ui/Spinner';
 import ProductCart from '../../ui/ProductCart';
 import Pagination from '../../ui/Pagination';
+import styled from 'styled-components';
+
+const ProductsContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+`;
 
 function StoreProducts() {
     const { isLoading, drugs, count } = useDrugs();
@@ -15,13 +23,15 @@ function StoreProducts() {
     }
 
     return (
-        <>
-            <Product
-                data={drugs}
-                render={(drug) => <ProductCart drug={drug} key={drug.id} />}
-            />
+        <div>
+            <div>
+                <Products
+                    data={drugs}
+                    render={(drug) => <ProductCart drug={drug} key={drug.id} />}
+                />
+            </div>
             <Pagination count={count} />
-        </>
+        </div>
     );
 }
 

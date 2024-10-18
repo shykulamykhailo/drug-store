@@ -27,7 +27,7 @@ export function useDrugs() {
         queryFn: () => getDrugs({ filter, page }),
     });
 
-    const pageCount = Math.ceil(count / 10);
+    const pageCount = Math.ceil(count / 15);
 
     if (page < pageCount)
         queryClient.prefetchQuery({
