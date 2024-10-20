@@ -5,8 +5,7 @@ export async function insertOrder({ userData, storeData }) {
     const { data, error } = await supabase.from('orders').insert([
         {
             id: uuidv4(),
-            firstName: userData.firstName,
-            lastName: userData.lastName,
+            fullName: userData.fullName,
             email: userData.email,
             orderedDrugs: storeData,
             location: userData.location,

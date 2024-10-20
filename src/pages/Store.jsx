@@ -3,7 +3,11 @@ import StoreProducts from '../features/store/StoreProducts';
 import StoreSidebar from '../features/store/StoreSidebar';
 
 const StyledStore = styled.div`
-    margin: 100px 40px;
+    margin: 100px 50px 0 50px;
+`;
+
+const StyledTitle = styled.div`
+    padding: 20px;
 `;
 
 const StoreContent = styled.div`
@@ -14,7 +18,7 @@ const StoreContent = styled.div`
 function Store() {
     return (
         <StyledStore>
-            <h3>Store</h3>
+            <StyledTitle>Store</StyledTitle>
             <StoreContent>
                 <StoreSidebar />
                 <StoreProducts />

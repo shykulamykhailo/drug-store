@@ -1,14 +1,44 @@
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { useStore } from '../context/StoreContext';
+import Button from './Button';
 
 const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
     width: 20rem;
+    border: 3px solid var(--color-green-700);
+    border-radius: 10px;
+    padding: 20px;
+    height: 390px;
 `;
 
-const regex = /^[A-Za-zА-Яа-яІіЇїЄє'’-]{1,50}$/;
+const StyledInput = styled.input`
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 1px solid var(--color-green-600);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+        outline: none;
+        border: 2px solid var(--color-green-800);
+    }
+
+    &:invalid {
+        border-color: var(--color-red-700);
+    }
+`;
+
+const StyledErrorMessage = styled.p`
+    color: var(--color-red-700);
+    font-size: 0.7rem;
+    margin-top: -15px;
+    margin-bottom: 10px;
+`;
+
+const regex = /^[A-Za-zА-Яа-яІіЇїЄє'’\-\s]{1,50}$/;
 
 function OrderForm({ onFormSubmit }) {
     const { storeData } = useStore();
@@ -21,37 +51,29 @@ function OrderForm({ onFormSubmit }) {
 
     console.log(errors);
     const onSubmit = (data) => {
-        // console.log(data);
         onFormSubmit(data);
         reset();
     };
 
     return (
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
-            First name{' '}
-            <input
-                {...register('firstName', {
+            Full Name{' '}
+            <StyledInput
+                {...register('fullName', {
                     required: true,
                     pattern: {
                         value: regex,
-                        message: 'Invalid first name format',
+                        message: 'Invalid name format',
                     },
                 })}
             />
-            {errors.firstName && <p>{errors.firstName.message}</p>}
-            Last name{' '}
-            <input
-                {...register('lastName', {
-                    required: true,
-                    pattern: {
-                        value: regex,
-                        message: 'Invalid last name format',
-                    },
-                })}
-            />
-            {errors.lastName && <p>{errors.lastName.message}</p>}
+            {errors.fullName && (
+                <StyledErrorMessage>
+                    {errors.fullName.message}
+                </StyledErrorMessage>
+            )}
             Email{' '}
-            <input
+            <StyledInput
                 {...register('email', {
                     required: true,
                     pattern: {
@@ -60,9 +82,11 @@ function OrderForm({ onFormSubmit }) {
                     },
                 })}
             />
-            {errors.email && <p>{errors.email.message}</p>}
+            {errors.email && (
+                <StyledErrorMessage>{errors.email.message}</StyledErrorMessage>
+            )}
             Phone number
-            <input
+            <StyledInput
                 {...register('phoneNumber', {
                     required: true,
                     pattern: {
@@ -72,16 +96,21 @@ function OrderForm({ onFormSubmit }) {
                     },
                 })}
             />
-            {errors.phoneNumber && <p>{errors.phoneNumber.message}</p>}
-            Address <input {...register('location', { required: true })} />
-            <button
+            {errors.phoneNumber && (
+                <StyledErrorMessage>
+                    {errors.phoneNumber.message}
+                </StyledErrorMessage>
+            )}
+            Address{' '}
+            <StyledInput {...register('location', { required: true })} />
+            <Button
                 type="submit"
                 disabled={
                     storeData.length === 0 || Object.keys(errors).length > 0
                 }
             >
-                Submit
-            </button>
+                Submit order
+            </Button>
         </StyledForm>
     );
 }

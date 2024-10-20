@@ -6,13 +6,6 @@ import ProductCart from '../../ui/ProductCart';
 import Pagination from '../../ui/Pagination';
 import styled from 'styled-components';
 
-const ProductsContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
-`;
-
 function StoreProducts() {
     const { isLoading, drugs, count } = useDrugs();
     const [searchParams] = useSearchParams();
