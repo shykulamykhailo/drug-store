@@ -15,6 +15,7 @@ const StyledOrderItems = styled.li`
     display: flex;
     justify-content: space-between;
     background-color: var(--color-green-200);
+    border-radius: 5px;
     gap: 10px;
     margin: 10px 0;
     padding: 5px 10px;

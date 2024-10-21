@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { testimonials } from '../../data/testimonials';
 import { NavLink } from 'react-router-dom';
+import { useUser } from '../authentication/useUser';
 
 const TestimonialContainer = styled.div`
     height: 400px;
@@ -56,6 +57,8 @@ const Button = styled.button`
 `;
 
 function Testimonials() {
+    const { isAuthenticated } = useUser();
+
     const settings = {
         dots: true,
         infinite: true,
@@ -94,7 +97,7 @@ function Testimonials() {
                     ))}
                 </Slider>
             </TestimonialContainer>
-            <NavLink to="authorization">
+            <NavLink to={isAuthenticated ? 'profile' : 'authorization'}>
                 <Button>Tell us about your impressions</Button>
             </NavLink>
         </>
