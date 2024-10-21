@@ -1,8 +1,22 @@
+import styled from 'styled-components';
 import Logout from '../features/authentication/Logout';
 import { useUser } from '../features/authentication/useUser';
 import OrdersHistory from '../features/history/OrdersHistory';
 
 import Spinner from '../ui/Spinner';
+
+const StyledProfileContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 100px 50px 0 50px;
+    gap: 20px;
+`;
+
+const ProfileHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
 
 function Profile() {
     const { user, isLoading } = useUser();
@@ -16,13 +30,13 @@ function Profile() {
         : 'User';
     console.log(user);
     return (
-        <div>
-            <h2>my profile</h2>
-            <p>Hello, {userName}</p>
+        <StyledProfileContainer>
+            <ProfileHeader>
+                <h3>Hello, {userName}</h3>
+                <Logout />
+            </ProfileHeader>
             <OrdersHistory />
-
-            <Logout />
-        </div>
+        </StyledProfileContainer>
     );
 }
 

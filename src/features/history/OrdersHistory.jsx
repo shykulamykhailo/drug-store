@@ -23,7 +23,7 @@ function OrdersHistory() {
 
     return (
         <div>
-            <div>Orders history</div>
+            <h3>Orders history</h3>
             {filteredUserOrders.length > 0 ? (
                 <ul>
                     {filteredUserOrders.map((order) => (
