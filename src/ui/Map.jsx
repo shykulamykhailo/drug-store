@@ -3,13 +3,15 @@ import { useJsApiLoader, GoogleMap, MarkerF } from '@react-google-maps/api';
 import { useEffect, useState } from 'react';
 import { DEFAULT_MAP_POSITION, DRUGSTORES_ADRESESS } from '../utils/constants';
 import { useGeolocation } from '../utils/useGeolocation';
+import Button from './Button';
 
 const Flex = styled.div`
     position: relative;
     flex-direction: row;
     align-items: center;
-
     background-position: 'bottom';
+    max-width: 635px;
+    min-width: 635px;
 `;
 
 const Box = styled.div`
@@ -20,6 +22,11 @@ const Box = styled.div`
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     min-width: 400px;
     z-index: 1400;
+`;
+
+const StoreAddress = styled.div`
+    padding: 10px 0;
+    color: var(--color-green-900);
 `;
 
 function Map({ mapSize }) {
@@ -52,9 +59,17 @@ function Map({ mapSize }) {
     console.log(mapPosition);
     return (
         <Flex>
-            <button onClick={getPosition}>
+            <div>
+                <h4>Addreses our stores</h4>
+                <StoreAddress>Medova St. 2</StoreAddress>
+                <StoreAddress>Mykhaila Verbyts&apos;koho st. 1</StoreAddress>
+                <StoreAddress>Zelena st. 30</StoreAddress>
+                <StoreAddress>Medova St 2</StoreAddress>
+                <StoreAddress>Medova St 2</StoreAddress>
+            </div>
+            <Button onClick={getPosition}>
                 {isLoadingPosition ? 'Loading...' : 'Use your position'}
-            </button>
+            </Button>
             <Box>
                 <GoogleMap
                     center={mapPosition}
