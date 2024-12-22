@@ -28,7 +28,6 @@ export async function login({ email, password }) {
 }
 
 export async function loginGoogle() {
-    // Аутентифікація через Google
     let { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
@@ -50,7 +49,7 @@ export async function getCurrentUser() {
     const { data, error } = await supabase.auth.getUser();
 
     if (error) throw new Error(error.message);
-    console.log('from get current user', data);
+
     return data.user;
 }
 

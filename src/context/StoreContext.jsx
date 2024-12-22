@@ -90,8 +90,6 @@ const StoreProvider = ({ children }) => {
             .toFixed(2);
     };
 
-    console.log(storeData);
-
     return (
         <StoreContext.Provider
             value={{
