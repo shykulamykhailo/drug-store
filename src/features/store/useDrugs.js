@@ -12,8 +12,6 @@ export function useDrugs() {
             ? null
             : { field: 'category', value: filterValue };
 
-    console.log(filter);
-
     const page = !searchParams.get('page')
         ? 1
         : Number(searchParams.get('page'));

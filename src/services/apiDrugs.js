@@ -10,8 +10,6 @@ export async function getDrugs({ page, filter }) {
             }
         );
 
-    console.log(filter);
-
     if (filter)
         query = query[filter.method || 'eq'](filter.field, filter.value);
 

@@ -3,11 +3,14 @@ import { useStore } from '../../context/StoreContext';
 import { insertOrder } from '../../services/apiOrders';
 import OrderForm from '../../ui/OrderForm';
 import Button from '../../ui/Button';
+import EmptyShoppingCartComponent from '../../ui/EmptyShoppingCartComponent';
 
 const PageContainer = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 100px 50px 0 50px;
+    align-items: center;
+    height: 100%;
+    margin-top: 100px;
 `;
 const StyledTitle = styled.h3`
     padding: 20px;
@@ -15,17 +18,14 @@ const StyledTitle = styled.h3`
 
 const StyledShoppingCart = styled.div`
     display: flex;
-
     justify-content: center;
     gap: 50px;
 
-    @media (min-width: 768px) {
-        flex-direction: row;
-    }
     @media (max-width: 768px) {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        font-size: 12px;
     }
 `;
 
@@ -36,6 +36,7 @@ const StyledStoredProducts = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
     max-width: 500px;
 `;
 
@@ -47,7 +48,7 @@ const ProductInfo = styled.div`
     width: 100%;
     max-width: 150px;
 
-    @media (min-width: 768px) {
+    @media (max-width: 768px) {
         max-width: 300px;
     }
 `;
@@ -96,6 +97,10 @@ function ShoppingCart() {
         insertOrder({ userData, storeData });
         handleClear();
     };
+
+    if (storeData.length === 0) {
+        return <EmptyShoppingCartComponent />;
+    }
 
     return (
         <PageContainer>

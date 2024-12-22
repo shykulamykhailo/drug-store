@@ -66,7 +66,6 @@ function ProductCart({ drug }) {
     const { id: drugId, name, category, price, drugImage } = drug;
 
     const handleAddToCart = (product) => {
-        console.log('click');
         addProduct(product);
     };
 

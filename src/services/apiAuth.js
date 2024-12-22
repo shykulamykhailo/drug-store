@@ -44,7 +44,6 @@ export async function loginGoogle() {
 export async function getCurrentUser() {
     const { data: session } = await supabase.auth.getSession();
     if (!session.session) {
-        console.log('null from curr user');
         return null;
     }
 
