@@ -13,8 +13,8 @@ const StyledHeader = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    background-color: ${({ isScrolled }) =>
-        isScrolled ? 'var(--color-green-50)' : 'transparent'};
+    background-color: ${(props) =>
+        props.$isScrolled ? 'var(--color-green-50)' : 'transparent'};
     transition: background-color 0.3s ease;
     z-index: 100;
 `;
@@ -38,7 +38,7 @@ function Header() {
     }, []);
 
     return (
-        <StyledHeader isScrolled={isScrolled}>
+        <StyledHeader $isScrolled={isScrolled}>
             <Logo />
             <MainNav />
         </StyledHeader>

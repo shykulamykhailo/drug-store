@@ -16,9 +16,9 @@ const StyledBanner = styled.div`
 
     h1,
     h3 {
-        opacity: ${(props) => (props.isVisible ? 1 : 0)};
+        opacity: ${(props) => (props.$isVisible ? 1 : 0)};
         transform: ${(props) =>
-            props.isVisible ? 'translateY(0)' : 'translateY(-50px)'};
+            props.$isVisible ? 'translateY(0)' : 'translateY(-50px)'};
         transition: opacity 1s ease, transform 1s ease;
     }
 
@@ -51,7 +51,7 @@ function Banner({ scrollToAbout }) {
         }, 100);
     }, []);
     return (
-        <StyledBanner isVisible={isVisible}>
+        <StyledBanner $isVisible={isVisible}>
             <h1>BioPharm</h1>
             <h3>
                 We combine the power of nature with the latest technologies for
