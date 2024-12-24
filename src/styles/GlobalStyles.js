@@ -113,6 +113,11 @@ h6 {
   hyphens: auto;
 }
 
+.slick-slide {
+        padding: 0 10px;
+    }
+
+
 
 `;
 

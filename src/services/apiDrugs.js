@@ -27,3 +27,16 @@ export async function getDrugs({ page, filter }) {
     }
     return { data, count };
 }
+
+export async function getMainDrugs() {
+    let { data: main_drugs, error } = await supabase
+        .from('main_drugs')
+        .select('*');
+
+    if (error) {
+        console.log(error);
+        throw new Error('Main drugs could not be a loaded');
+    }
+
+    return main_drugs;
+}

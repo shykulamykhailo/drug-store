@@ -3,7 +3,7 @@ import StoreProducts from '../features/store/StoreProducts';
 import StoreSidebar from '../features/store/StoreSidebar';
 
 const StyledStore = styled.div`
-    margin: 100px 50px 0 50px;
+    margin-top: 100px;
 `;
 
 const StyledTitle = styled.div`
@@ -12,7 +12,9 @@ const StyledTitle = styled.div`
 
 const StoreContent = styled.div`
     display: flex;
+    justify-content: center;
     gap: 50px;
+    width: 100%;
 `;
 
 function Store() {

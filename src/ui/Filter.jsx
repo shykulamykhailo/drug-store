@@ -21,8 +21,8 @@ const StyledButton = styled.button`
         background-color: var(--color-green-400);
     }
 
-    ${({ isActive }) =>
-        isActive &&
+    ${(props) =>
+        props.$isActive &&
         `
         border: 2px solid var(--color-green-700); 
         background-color: var(--color-green-400); 
@@ -52,7 +52,7 @@ function Filter({ filterField, options }) {
                 <StyledButton
                     key={option.value}
                     onClick={() => handleClick(option.value)}
-                    isActive={activeOption === option.value}
+                    $isActive={activeOption === option.value}
                 >
                     {option.label}
                 </StyledButton>
