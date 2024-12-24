@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-    background-color: ${({ bgColor }) => bgColor || 'var(--color-green-300)'};
-    color: ${({ color }) => color || 'var(--color--grey-900)'};
+    background-color: ${({ bgColor }) => bgColor || 'var(--color-green-500)'};
+    color: ${({ color }) => color || 'var(--color-grey-0)'};
     border: none;
     padding: ${({ size }) =>
         size === 'large'

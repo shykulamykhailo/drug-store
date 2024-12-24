@@ -3,19 +3,19 @@ import { useStore } from '../context/StoreContext';
 import Button from './Button';
 
 const StyledProductCart = styled.div`
-    border: 1px solid var(--color-green-700);
-    border-radius: 10px;
-    padding: 16px;
-    text-align: center;
-    background-color: var(--color-green-100);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    height: 260px;
+    border-radius: 0.5rem;
+    align-items: center;
+    background-color: var(--color-grey-0);
+    box-shadow: var(--shadow-lg);
+    width: 15rem;
+    height: auto;
 `;
 
 const ProductImage = styled.img`
-    width: 100%;
-    height: 66.66%;
+    width: 15rem;
+    height: 14rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
 `;
 
 const ProductDetails = styled.div`
@@ -23,38 +23,24 @@ const ProductDetails = styled.div`
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
+    padding: 0 1rem 1rem 1rem;
 `;
 
 const ProductName = styled.div`
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 1rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
 `;
 
-const ProductFooter = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: auto;
-`;
-
 const ProductCategory = styled.div`
     font-size: 13px;
-    color: var(--color--green--900);
-    background-color: #7cf37c;
-    border: 1px solid var(--color-green-900);
+
     padding: 2px;
     border-radius: 5px;
 `;
 
-const ProductPriceAndButton = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-`;
 const ProductPrice = styled.div`
     font-size: 18px;
     font-weight: bold;
@@ -71,21 +57,14 @@ function ProductCart({ drug }) {
 
     return (
         <StyledProductCart id={drugId}>
-            <ProductImage src={`${drugImage}`} height="60px" />
+            <ProductImage src="pharm.jpg" height="60px" />
             <ProductDetails>
                 <ProductName>{name}</ProductName>
-                <ProductFooter>
-                    <ProductCategory>{category}</ProductCategory>
-                    <ProductPriceAndButton>
-                        <ProductPrice>${price}</ProductPrice>
-                        <Button
-                            size="small"
-                            onClick={() => handleAddToCart(drug)}
-                        >
-                            Add to cart
-                        </Button>
-                    </ProductPriceAndButton>
-                </ProductFooter>
+                <ProductCategory>{category}</ProductCategory>
+                <ProductPrice>${price}</ProductPrice>
+                <Button size="small" onClick={() => handleAddToCart(drug)}>
+                    Add to cart
+                </Button>
             </ProductDetails>
         </StyledProductCart>
     );

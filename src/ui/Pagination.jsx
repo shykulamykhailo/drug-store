@@ -15,7 +15,7 @@ function Pagination({ count }) {
         ? 1
         : Number(searchParams.get('page'));
 
-    const pageCount = Math.ceil(count / 15);
+    const pageCount = Math.ceil(count / 9);
 
     const nextPage = () => {
         const next = currentPage === pageCount ? currentPage : currentPage + 1;
@@ -36,9 +36,9 @@ function Pagination({ count }) {
     return (
         <StyledPagination>
             <div>
-                Showing <span>{(currentPage - 1) * 15 + 1}</span> to{' '}
+                Showing <span>{(currentPage - 1) * 9 + 1}</span> to{' '}
                 <span>
-                    {currentPage === pageCount ? count : currentPage * 15}
+                    {currentPage === pageCount ? count : currentPage * 9}
                 </span>
                 of <span>{count}</span> results
             </div>

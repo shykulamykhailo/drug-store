@@ -7,30 +7,23 @@ const StyledFilter = styled.div`
     flex-direction: column;
     width: 250px;
     align-items: center;
+    justify-content: center;
+    background-color: var(--color-grey-0);
+    height: 20rem;
+    gap: 0.5rem;
 `;
 const StyledButton = styled.button`
     padding: 10px 0;
     width: 200px;
-    background-color: var(--color-green-300);
-    border: 1px solid var(--color-green-900);
-    border-radius: 3px;
-    margin-bottom: 3px;
+    background-color: var(--color-green-200);
+    border-radius: 5px;
     transition: background-color 0.3s ease, border 0.3s ease;
 
     &:hover {
         background-color: var(--color-green-400);
     }
 
-    ${(props) =>
-        props.$isActive &&
-        `
-        border: 2px solid var(--color-green-700); 
-        background-color: var(--color-green-400); 
-    `}
-
-    &:focus {
-        outline: none;
-    }
+    ${(props) => props.$isActive && `background-color: var(--color-green-400);`}
 `;
 
 function Filter({ filterField, options }) {

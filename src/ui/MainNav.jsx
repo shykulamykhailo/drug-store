@@ -57,10 +57,11 @@ const StyledNavLink = styled(NavLink)`
     padding: 10px 15px;
     color: var(--color-green-900);
     border-radius: 8px;
-    transition: background 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
 
     &.active {
-        background: rgba(0, 128, 0, 0.2);
+        background-color: rgba(0, 128, 0, 0.2);
+        border: none;
     }
 
     &:hover {
